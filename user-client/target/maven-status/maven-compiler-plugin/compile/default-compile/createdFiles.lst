@@ -1,0 +1,11 @@
+com\assessment\mercedesclient\controller\UserController.class
+com\assessment\mercedesclient\MercedesClientApplication.class
+com\assessment\mercedesclient\model\User.class
+com\assessment\mercedesclient\Test.class
+com\assessment\mercedesclient\service\RequestHandler.class
+com\assessment\mercedesclient\model\ErrorResponse.class
+com\assessment\mercedesclient\model\ReadResponse.class
+com\assessment\mercedesclient\exception\ControllerExceptionHandler.class
+com\assessment\mercedesclient\model\UserResponse.class
+com\assessment\mercedesclient\exception\InputValidationException.class
+com\assessment\mercedesclient\util\Validator.class

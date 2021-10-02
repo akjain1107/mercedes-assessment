@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package com.assessment.mercedesbenz.gprc;
+option java_package = "com.assessment.mercedesbenz.gprc";
+service UserWriteService {
+  rpc store(UserDetails) returns (Response){}
+}
+service UserUpdateService {
+  rpc update(UpdateDetails) returns (Response){}
+}
+message UserDetails {
+  string id = 1;
+  string name = 2;
+  string dob = 3;
+  string salary = 4;
+  int32 age = 5;
+  string fileType =6;
+}
+message Response{
+  string message =1;
+  int32 status = 2;
+}
+
+message UpdateDetails {
+  string filterId = 1;
+  UserDetails userDetails =2;
+}
