@@ -2,10 +2,43 @@
 Assessment of Mercedes Benz
 Please follow below steps to setup and run the services.
 
-1. Kindly downlaod the project and setup in any of IDE(Preferable intellij IDEA). Once the project is setup please execute mvn clean install and reopen the project again.
+1. Kindly downlaod the project and setup in any of IDE(Preferable intellij IDEA). Once the project is setup please execute mvn clean install and reopen the project again. If you still see the errors in setup, kindly try to run two microservices using class MercedesClientApplication and MercedesServiceApplication, services will start.
+2. 
+3. Start both the services (user-service and user-client).
 
-2. Start both the services (user-service and user-client).
-3. Once both the services runs properly, user bleow rest end point -
+Implemantation done on the basis of below scenarios -
+
+Service 1: user-client
+
+
+1.	This will be consumer-facing service which will accept request from the user.
+2.	The service should accept the data in JSON format within the request body.
+3.	The service should also accept another input fileType as a parameter or header within the request. The value to this parameter could be either CSV or XML.
+4.	The service should expose 3 endpoints as below
+a.	Store – to save new data
+b.	Update – to update existing data
+c.	Read – to read existing data, Read need not contain the fileType header or parameter
+Note the request itself could contain any data. Sample given below can be used.
+Sample body:
+{ name: “Hello”, dob: “20-08-2020”, salary: “122111241.150”, age: 20 }
+Request Header or Parameter
+fileType = CSV
+fileType = XML
+5.	The service should process the request received with the below constraints.
+a.	Validate the request completely. Including the data and data types
+b.	Pass on the validated information to Service 2. Below are the conditions to keep in mind.
+i.	The communication between Service 1 & Service 2 should NOT be http or https. Use some other means of communication.
+ii.	The data transferred to the second service should be encrypted and transformed to Google’s protocol buffer format.
+iii.	Only READ operation can be done over http
+
+
+Service 2: user-service
+1.	Service should receive and decrypt the information passed by the previous service.
+2.	Once decrypted the service should store the information either in CSV/XML file based on the input received in the fileType parameter in the previous service.
+3.	If the data should be read and returned then the returned data has to be encrypted. Which Service 1 should decrypt and respond to the consumer.
+
+
+5. Once both the services runs properly, user bleow rest end point -
 
 	1. Add user - Add the user details into the file(XML/CSV) and generate a unique uuid to identify user while updating or reading the users. Also you need to pass mandatory header file type(XML/CSV).
 	
